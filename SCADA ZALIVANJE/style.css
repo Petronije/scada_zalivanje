@@ -39,7 +39,6 @@
 
 */
 
-
 /*
 ------ GENERAL STYLING ------
 */
@@ -67,70 +66,62 @@ body {
 */
 
 .main-header {
-    height: 6.4rem;
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 6.4rem;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 
 /*
 ------ SCADA ------
 */
 
-
 .scada {
-    background-color: #c1c1c1;
-    padding: 3.2rem 1.6rem;
-    max-width: 170rem;
-    margin: 0 auto;
-    border-radius: 9px;
+  background-color: #c1c1c1;
+  padding: 3.2rem 1.6rem;
+  max-width: 170rem;
+  margin: 0 auto;
+  border-radius: 9px;
 }
-.scada-main{
-    display: block;
-    margin: 0 auto;
-    color-scheme: light dark;
-    max-width: 140rem;
-   
+.scada-main {
+  display: block;
+  margin: 0 auto;
+  color-scheme: light dark;
+  max-width: 140rem;
 }
 
-.pump, .sov-01 {
-  fill:#29c01b;
-    stroke: #000000;
+.pump,
+.sov-01 {
+  fill: #29c01b;
+  stroke: #000000;
 }
 
 .stop {
-    fill:#ff0000;
-    stroke: #000000;
+  fill: #ff0000;
+  stroke: #000000;
 }
 
-
 .pipe {
-    stroke: #2751db;
-    fill: #2751db;
+  stroke: #2751db;
+  fill: #2751db;
 }
 
 .pipe-stop {
-    fill:#000000;
-    stroke:#000;
+  fill: #000000;
+  stroke: #000;
 }
-
-
-
-
 
 /*
 ------ CONTROL PANEL------
 */
 
 .ctrl {
-    display: flex;
-
+  display: flex;
 }
 
 .pump-toggle {
-   display: flex;
+  display: flex;
 }
 
 .control-panel-container {
@@ -174,7 +165,6 @@ body {
   color: #555;
   border: 2px solid #555;
   background-color: #eee;
-  
 }
 
 .toggle {
@@ -205,7 +195,6 @@ body {
   background-color: #29c01b;
 }
 
-
 .measurement {
   display: flex;
   align-items: center;
@@ -231,11 +220,11 @@ body {
 
 .tag-value-number {
   width: 5rem;
-font-size: 1.6rem;
-padding: 0.2rem 0.8rem;
-background-color: #000;
-color: aqua;
-font-weight: 600;
+  font-size: 1.6rem;
+  padding: 0.2rem 0.8rem;
+  background-color: #000;
+  color: aqua;
+  font-weight: 600;
 }
 
 .tag-value-unit {
@@ -247,6 +236,3 @@ font-weight: 600;
   font-weight: 600;
   background-color: #777;
 }
-
-
-
