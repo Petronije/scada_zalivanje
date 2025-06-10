@@ -23,67 +23,106 @@ const btn3 = document.querySelector(".btn3");
 const btnSov = document.querySelector(".btn-sov");
 
 let pump1Status = 0;
-let pump2Tatus = 0;
+let pump2Status = 0;
 let pump3Status = 0;
 let sovStatus = 0;
 
 const pumpStart = function (pump, pumpToggle, pipe) {
+  // Control panel toggle
   pumpToggle.querySelector(".toggle-off").classList.remove("visible");
   pumpToggle.querySelector(".toggle-on").classList.add("visible");
 
+  // SCADA pump ON
   const pumpElements = pump.querySelectorAll(".pump");
   pumpElements.forEach((el) => {
     el.classList.remove("stop");
   });
+
+  // Pipe start
   pipe.forEach((el) => {
     el.classList.remove("pipe-stop");
   });
 };
 
 const pumpStop = function (pump, pumpToggle, pipe) {
+  // Control panel toggle
   pumpToggle.querySelector(".toggle-off").classList.add("visible");
   pumpToggle.querySelector(".toggle-on").classList.remove("visible");
 
+  // SCADA pump OFF
   const pumpElements = pump.querySelectorAll(".pump");
   pumpElements.forEach((el) => {
     el.classList.add("stop");
   });
+
+  // Pipe stop
   pipe.forEach((el) => {
     el.classList.add("pipe-stop");
   });
 };
 
-const startPump = function () {
+const sovStart = function () {
+  // Control panel toggle
+  sovToggle.querySelector(".toggle-off").classList.remove("visible");
+  sovToggle.querySelector(".toggle-on").classList.add("visible");
+
+  // SCADA sov ON
+  const sovElements = solenoid.querySelectorAll(".sov-01");
+  sovElements.forEach((el) => {
+    el.classList.remove("stop");
+  });
+};
+
+const sovStop = function () {
+  // Control panel toggle
+  sovToggle.querySelector(".toggle-off").classList.add("visible");
+  sovToggle.querySelector(".toggle-on").classList.remove("visible");
+
+  // SCADA sov OFF
+  const sovElements = solenoid.querySelectorAll(".sov-01");
+  sovElements.forEach((el) => {
+    el.classList.add("stop");
+  });
+};
+
+const outerPipeStart = function () {
+  pipeOuter.forEach((el) => {
+    el.classList.remove("pipe-stop");
+  });
+};
+
+const outerPipeStop = function () {
+  pipeOuter.forEach((el) => {
+    el.classList.add("pipe-stop");
+  });
+};
+
+const startProcess = function () {
   controlPanel.addEventListener("click", function (e) {
     const clicked = e.target;
+
     if (clicked.closest(".btn1")) {
       if (sovStatus === 1) {
-        pump01Toggle.querySelector(".toggle-off").classList.toggle("visible");
-        pump01Toggle.querySelector(".toggle-on").classList.toggle("visible");
-        const pumpElements = pump01.querySelectorAll(".pump");
-        pumpElements.forEach((el) => {
-          el.classList.toggle("stop");
-          if (el.closest("stop")) {
-            pump1Status = 0;
-          } else {
-            pump1Status = 1;
-          }
-        });
-        pipe01.forEach((el) => {
-          el.classList.toggle("pipe-stop");
-        });
+        if (pump1Status === 0) {
+          pumpStart(pump01, pump01Toggle, pipe01);
+          pump1Status = 1;
+          outerPipeStart();
+        } else if (pump1Status === 1) {
+          pumpStop(pump01, pump01Toggle, pipe01);
+          pump1Status = 0;
+          outerPipeStop();
+        }
       }
     }
+
     if (clicked.closest(".btn2")) {
-      pump02Toggle.querySelector(".toggle-off").classList.toggle("visible");
-      pump02Toggle.querySelector(".toggle-on").classList.toggle("visible");
-      const pumpElements = pump02.querySelectorAll(".pump");
-      pumpElements.forEach((el) => {
-        el.classList.toggle("stop");
-      });
-      pipe02.forEach((el) => {
-        el.classList.toggle("pipe-stop");
-      });
+      if (pump2Status === 0) {
+        pumpStart(pump02, pump02Toggle, pipe02);
+        pump2Status = 1;
+      } else if (pump2Status === 1) {
+        pumpStop(pump02, pump02Toggle, pipe02);
+        pump2Status = 0;
+      }
     }
 
     if (clicked.closest(".btn3")) {
@@ -97,24 +136,20 @@ const startPump = function () {
     }
 
     if (clicked.closest(".btn-sov")) {
-      sovToggle.querySelector(".toggle-off").classList.toggle("visible");
-      sovToggle.querySelector(".toggle-on").classList.toggle("visible");
-      const sovElements = solenoid.querySelectorAll(".sov-01");
-      sovElements.forEach((el) => {
-        el.classList.toggle("stop");
-        if (el.closest(".stop")) {
-          sovStatus = 0;
-        } else {
-          sovStatus = 1;
-        }
-      });
-      if (pump1Status === 1) {
-        pipeOuter.forEach((el) => {
-          el.classList.toggle("pipe-stop");
-        });
+      if (sovStatus === 0) {
+        sovStart();
+        sovStatus = 1;
+      } else if (sovStatus === 1) {
+        sovStop();
+        sovStatus = 0;
+        pumpStop(pump01, pump01Toggle, pipe01);
+        pump1Status = 0;
+        outerPipeStop();
       }
     }
   });
 };
 
-startPump();
+startProcess();
+
+
