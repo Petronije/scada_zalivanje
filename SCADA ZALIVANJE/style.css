@@ -236,3 +236,84 @@ body {
   font-weight: 600;
   background-color: #777;
 }
+
+/*
+------ WEATHER WIDGET ------
+*/
+.weather-container {
+  margin: 0 auto;
+  max-width: 100rem;
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.weather-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.weather-city {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.weather-today {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+}
+
+.today-temp {
+  font-size: 4.8rem;
+}
+
+.icon-big {
+  width: 5.2rem;
+  height: 5.2rem;
+  color: #ffae00;
+}
+
+.today-clouds {
+  font-size: 3.6rem;
+}
+
+.weather-conditions {
+  display: flex;
+  gap: 01.6rem;
+}
+
+.wind,
+.humidity,
+.pressure {
+  font-size: 1.6rem;
+}
+
+.weather-week {
+  display: flex;
+  gap: 1.2rem;
+  border-top: solid 1px #ccc;
+  padding-top: 0.6rem;
+}
+
+.weather-week-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.day,
+.temp-up,
+.temp-down {
+  font-size: 1.2rem;
+}
+
+.icon-small {
+  width: 2.4rem;
+  height: 2.4rem;
+}
