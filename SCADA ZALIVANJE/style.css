@@ -259,7 +259,7 @@ body {
 
 .weather-city {
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .weather-today {
@@ -270,6 +270,10 @@ body {
 
 .today-temp {
   font-size: 4.8rem;
+}
+
+.temp-unit {
+  margin-left: 1.2rem;
 }
 
 .icon-big {
