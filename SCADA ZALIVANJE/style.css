@@ -241,7 +241,7 @@ body {
 ------ WEATHER WIDGET ------
 */
 .weather-container {
-  margin: 0 auto;
+  margin-left: auto;
   max-width: 100rem;
   padding: 2.4rem;
   display: flex;
@@ -277,14 +277,13 @@ body {
   font-size: 4.8rem;
 }
 
-
 .icon-big {
   font-size: 5.2rem;
   display: none;
 }
 
 .icon-big.ph-sun {
-  color: #ffae00;
+  color: #ffe600;
 }
 
 .icon-visible {
@@ -306,19 +305,20 @@ body {
   font-size: 1.6rem;
 }
 
-.wind-unit, .humidity-unit, .pressure-unit {
+.wind-unit,
+.humidity-unit,
+.pressure-unit {
   margin-left: 0.4rem;
 }
 
 .weather-week {
   display: flex;
-  /* border-top: solid 1px #e6e6e6; */
- 
-  }
+  /* border-top: solid 1px #aeaeae; */
+}
 
-  .weather-week .weather-week-day:nth-child(odd) {
-    background-color: #e6e6e6;
-  }
+.weather-week .weather-week-day:nth-child(odd) {
+  background-color: #c7c7c7;
+}
 
 .weather-week-day {
   display: flex;
@@ -327,8 +327,6 @@ body {
   gap: 0.6rem;
   width: 7.5rem;
   padding: 0.8rem;
-  
-  
 }
 
 .day,
