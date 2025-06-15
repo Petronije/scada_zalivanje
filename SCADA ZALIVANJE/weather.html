@@ -4,16 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script
-      defer
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      defer
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
     <script defer src="weather.js"></script>
     <title>WEATHER WIDGET</title>
   </head>
@@ -24,7 +19,11 @@
         <div class="weather-today">
           <div class="today-temp">+29<span class="temp-unit">°C</span></div>
           <div class="today-icon">
-            <ion-icon name="sunny-outline" class="icon-big"></ion-icon>
+            <i class="ph ph-sun icon-big"></i>
+            <i class="ph ph-cloud icon-big"></i>
+            <i class="ph ph-cloud-rain icon-big"></i>
+            <i class="ph ph-cloud-snow icon-big"></i>
+            <i class="ph ph-cloud-sun icon-big"></i>
           </div>
           <div class="today-clouds">clear</div>
         </div>

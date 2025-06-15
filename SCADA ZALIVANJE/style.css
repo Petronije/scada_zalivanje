@@ -258,32 +258,41 @@ body {
 }
 
 .weather-city {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: 500;
 }
 
 .weather-today {
   display: flex;
   align-items: center;
-  gap: 3.2rem;
+  gap: 4.8rem;
 }
 
 .today-temp {
+  font-size: 5.2rem;
+}
+
+.today-temp .temp-unit {
+  margin-left: 1.2rem;
   font-size: 4.8rem;
 }
 
-.temp-unit {
-  margin-left: 1.2rem;
-}
 
 .icon-big {
-  width: 5.2rem;
-  height: 5.2rem;
+  font-size: 5.2rem;
+  display: none;
+}
+
+.icon-big.ph-sun {
   color: #ffae00;
 }
 
+.icon-visible {
+  display: block;
+}
+
 .today-clouds {
-  font-size: 3.6rem;
+  font-size: 4.2rem;
 }
 
 .weather-conditions {
@@ -297,18 +306,29 @@ body {
   font-size: 1.6rem;
 }
 
+.wind-unit, .humidity-unit, .pressure-unit {
+  margin-left: 0.4rem;
+}
+
 .weather-week {
   display: flex;
-  gap: 1.2rem;
-  border-top: solid 1px #ccc;
-  padding-top: 0.6rem;
-}
+  /* border-top: solid 1px #e6e6e6; */
+ 
+  }
+
+  .weather-week .weather-week-day:nth-child(odd) {
+    background-color: #e6e6e6;
+  }
 
 .weather-week-day {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
+  width: 7.5rem;
+  padding: 0.8rem;
+  
+  
 }
 
 .day,
