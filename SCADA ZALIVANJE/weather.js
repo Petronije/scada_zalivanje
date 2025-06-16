@@ -16,19 +16,35 @@ const humidityUnit = document.querySelector(".humidity-unit");
 const pressure = document.querySelector(".pressure");
 const pressureUnit = document.querySelector(".pressure-unit");
 
+const day = document.querySelectorAll(".weather-week-day");
+
 const weatherData = {};
 const weatherUnits = {};
+let weekDaysUp = [];
+let weekDaysDown = [];
 
+// remove all visibility from all icons
 const removeVisibleAll = function (icons) {
   icons.forEach((icon) => {
     icon.classList.remove("icon-visible");
   });
 };
 
+// add visibility to passed icon element
 const addVisible = function (icon) {
   icon.classList.add("icon-visible");
 };
 
+const dayInfo = function (dayPlus) {
+  const now = new Date();
+  const future = now.getTime() + dayPlus * 24 * 60 * 60 * 1000;
+  const options = { weekday: "long" };
+  const locale = "en-US";
+  const day = new Intl.DateTimeFormat(locale, options).format(future);
+  return day;
+};
+
+// function for filling widget from API data
 const fillWidget = function () {
   todayTemp.firstChild.nodeValue = weatherData.temperature;
   tempUnit.forEach((unit) => {
@@ -50,8 +66,8 @@ const fillWidget = function () {
     addVisible(sunIcon);
     clouds.textContent = "clear sky";
   } else if (
-    weatherData.clouds > 10 &&
-    weatherData.clouds < 25 &&
+    weatherData.clouds > 20 &&
+    weatherData.clouds < 45 &&
     weatherData.rain < 25 &&
     weatherData.snow < 25
   ) {
@@ -59,7 +75,7 @@ const fillWidget = function () {
     addVisible(cloudSunIcon);
     clouds.textContent = "sun & clouds";
   } else if (
-    weatherData.clouds >= 25 &&
+    weatherData.clouds >= 45 &&
     weatherData.rain < 25 &&
     weatherData.snow < 25
   ) {
@@ -75,6 +91,25 @@ const fillWidget = function () {
     addVisible(cloudSnowIcon);
     clouds.textContent = "snow";
   }
+
+  weekDaysUp.forEach(function (el, i) {
+    const dayUp = document.querySelector(`.day-${i}`);
+    dayUp.querySelector(".temp-up").firstChild.nodeValue = el;
+  });
+
+  weekDaysDown.forEach(function (el, i) {
+    const dayDown = document.querySelector(`.day-${i}`);
+    dayDown.querySelector(".temp-down").firstChild.nodeValue = el;
+  });
+
+  day.forEach(function (el, i) {
+    const weekDay = el.querySelector(".day");
+    if (i === 0) {
+      weekDay.textContent = "Tommorrow";
+    } else {
+      weekDay.textContent = dayInfo(i + 1);
+    }
+  });
 };
 
 const getWeatherData = async function () {
@@ -95,6 +130,9 @@ const getWeatherData = async function () {
     weatherData.wind = data.current.wind_speed_10m;
     weatherData.temperature = data.current.temperature_2m;
     weatherData.clouds = data.current.cloud_cover;
+
+    weekDaysUp = data.daily.temperature_2m_max;
+    weekDaysDown = data.daily.temperature_2m_min;
 
     weatherUnits.humidityUnit = data.current_units.relative_humidity_2m;
     weatherUnits.pressureUnit = data.current_units.surface_pressure;
