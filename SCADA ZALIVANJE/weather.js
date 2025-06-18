@@ -58,15 +58,15 @@ const fillWidget = function () {
   pressureUnit.textContent = weatherUnits.pressureUnit;
 
   if (
-    weatherData.clouds <= 10 &&
+    weatherData.clouds <= 30 &&
     weatherData.rain <= 25 &&
     weatherData.snow < 25
   ) {
     removeVisibleAll(bigIcons);
     addVisible(sunIcon);
-    clouds.textContent = "clear sky";
+    clouds.textContent = "clear";
   } else if (
-    weatherData.clouds > 20 &&
+    weatherData.clouds > 30 &&
     weatherData.clouds < 45 &&
     weatherData.rain < 25 &&
     weatherData.snow < 25

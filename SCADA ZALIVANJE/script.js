@@ -85,18 +85,40 @@ const sovStop = function () {
   });
 };
 
+// Outer pipe start
 const outerPipeStart = function () {
   pipeOuter.forEach((el) => {
     el.classList.remove("pipe-stop");
   });
 };
 
+// Outer pipe stop
 const outerPipeStop = function () {
   pipeOuter.forEach((el) => {
     el.classList.add("pipe-stop");
   });
 };
 
+const subscribeMQTT = function () {
+  const client = mqtt.connect("ws://localhost:9001");
+  client.on("connect", function () {
+    console.log("MQTT povezan");
+
+    // pretplata na test temu
+    client.subscribe("esp32/test", function (err) {
+      if (!err) {
+        console.log("✅ Uspesna pretplata na temu esp32/test");
+      }
+    });
+  });
+
+  // print poruke po pristigloj poruci
+  client.on("message", function (topic, message) {
+    console.log(`📩 Poruka pristigla sa teme ${topic} : ${message.toString()}`);
+  });
+};
+
+// Main function
 const startProcess = function () {
   controlPanel.addEventListener("click", function (e) {
     const clicked = e.target;
@@ -151,4 +173,4 @@ const startProcess = function () {
 };
 
 startProcess();
-
+// subscribeMQTT();
